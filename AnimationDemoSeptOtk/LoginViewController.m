@@ -22,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view1LeftSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view2LeftSpace;
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *springView;
 
 @end
 
@@ -33,6 +34,25 @@
     [self setupFields];
     self.loginButton.alpha = 0;
     [self createGradient];
+    [self createTopGradient];
+    [self setupButton];
+}
+
+- (void)setupButton {
+    self.loginButton.layer.cornerRadius = CGRectGetHeight(self.loginButton.frame) / 2;
+    self.loginButton.backgroundColor = [UIColor orangeColor];
+    self.loginButton.layer.borderWidth = 5;
+    self.loginButton.layer.borderColor = [[UIColor redColor] colorWithAlphaComponent:0.5].CGColor;
+}
+
+- (void)createTopGradient {
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.frame = self.imageView.bounds;
+    layer.colors = @[[UIColor yellowColor],[UIColor clearColor]];
+    layer.startPoint = CGPointMake(0.5,0);
+    layer.endPoint   = CGPointMake(0.5, 0.5);
+    
+    layer.locations = @[@0, @0.5];
 }
 
 - (void)createGradient {
@@ -131,6 +151,67 @@
 }
 - (IBAction)moveLeft:(id)sender {
     [self animateViewsToPoint:0];
+}
+- (IBAction)showMeTheSpring:(id)sender {
+    
+    static BOOL enlargeView = YES;
+    [UIView animateWithDuration:2
+                          delay:0
+         usingSpringWithDamping:0.3
+          initialSpringVelocity:5
+                        options:0
+                     animations:^{
+                         CGFloat width = enlargeView == YES ? 150 : 20;
+                         self.springView.constant = width;
+                         [self.view layoutIfNeeded];
+                         enlargeView = !enlargeView;
+                     }
+                     completion:nil];
+}
+
+- (IBAction)loginPressed:(UIButton *)sender {
+    if ([self.passwordField.text isEqualToString:@"123456"]){
+        //покажем новый экран с супре анимацией
+        return;
+    }
+    [self shakePasswordField];
+}
+
+- (void)shakePasswordField {
+    [UIView animateKeyframesWithDuration:1.5
+                                   delay:0
+                                 options:UIViewKeyframeAnimationOptionCalculationModeCubic
+                              animations:^{
+                                  //Ведем вправо
+                                  [UIView addKeyframeWithRelativeStartTime:0
+                                                          relativeDuration:0.2
+                                                                animations:^{
+                                                                    self.passwordCenterConstraint.constant = 40;
+                                                                    [self.view layoutIfNeeded];
+                                                                }];
+                                  //Ведем влево
+                                  [UIView addKeyframeWithRelativeStartTime:0.3
+                                                          relativeDuration:0.4
+                                                                animations:^{
+                                                                    self.passwordCenterConstraint.constant = -30;
+                                                                    [self.view layoutIfNeeded];
+                                                                }];
+                                  //Опять вправо
+                                  [UIView addKeyframeWithRelativeStartTime:0.6
+                                                          relativeDuration:0.2
+                                                                animations:^{
+                                                                    self.passwordCenterConstraint.constant = 10;
+                                                                    [self.view layoutIfNeeded];
+                                                                }];
+                                  //Закончили упражнение
+                                  [UIView addKeyframeWithRelativeStartTime:0.8
+                                                          relativeDuration:0.2
+                                                                animations:^{
+                                                                    self.passwordCenterConstraint.constant = 0;
+                                                                    [self.view layoutIfNeeded];
+                                                                }];
+                              }
+                              completion:nil];
 }
 
 - (void)animateViewsToPoint:(CGFloat)point {

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -56,6 +57,9 @@
                                     <constraint firstAttribute="width" constant="120" id="ivT-rs-nei"/>
                                 </constraints>
                                 <state key="normal" title="Войти"/>
+                                <connections>
+                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ysF-He-kbv"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ba-PB-Gfq">
                                 <rect key="frame" x="5" y="326" width="58" height="54"/>
@@ -87,6 +91,23 @@
                                     <action selector="moveLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vmD-eD-8WP"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muy-Cy-NbR">
+                                <rect key="frame" x="79" y="406" width="52" height="55"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="BYZ-8d-dmz"/>
+                                    <constraint firstAttribute="width" secondItem="muy-Cy-NbR" secondAttribute="height" multiplier="52:55" id="NHf-pE-RBJ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAp-KF-Ufb">
+                                <rect key="frame" x="254" y="430" width="52" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Струна"/>
+                                <connections>
+                                    <action selector="showMeTheSpring:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9bX-Qu-9cC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
@@ -96,6 +117,7 @@
                             <constraint firstItem="JC3-Hl-h7q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="49" id="4wJ-1P-GSc"/>
                             <constraint firstItem="tDe-iz-MBb" firstAttribute="top" secondItem="Iph-Lr-hjQ" secondAttribute="bottom" constant="80" id="5h8-xV-1fJ"/>
                             <constraint firstItem="8Ba-PB-Gfq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="7LU-hY-uRX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iAp-KF-Ufb" secondAttribute="trailing" constant="-6" id="9bk-h7-21o"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z6e-ZH-7au" secondAttribute="bottom" id="Dzi-us-u7P"/>
                             <constraint firstItem="Iph-Lr-hjQ" firstAttribute="top" secondItem="JC3-Hl-h7q" secondAttribute="bottom" constant="49" id="Hb0-jh-geL"/>
                             <constraint firstItem="Qfb-Vm-RXs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="Hsa-4z-AwE"/>
@@ -107,9 +129,12 @@
                             <constraint firstItem="Qfb-Vm-RXs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="f8y-A9-DjI"/>
                             <constraint firstItem="JC3-Hl-h7q" firstAttribute="height" secondItem="Iph-Lr-hjQ" secondAttribute="height" id="fEl-9D-ZCz"/>
                             <constraint firstItem="8Ba-PB-Gfq" firstAttribute="height" secondItem="Dhd-wF-lyB" secondAttribute="height" id="fc9-Pl-Yx2"/>
+                            <constraint firstItem="muy-Cy-NbR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="59" id="iXZ-9J-IDu"/>
                             <constraint firstItem="Dhd-wF-lyB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-10" id="lrA-gr-DTb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Z6e-ZH-7au" secondAttribute="trailing" constant="-20" id="mie-ap-hIO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iAp-KF-Ufb" secondAttribute="bottom" constant="20" id="pbq-8p-VZA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Dhd-wF-lyB" secondAttribute="bottom" constant="8" id="tWT-HW-rgf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="muy-Cy-NbR" secondAttribute="bottom" constant="19" id="w8N-ei-Hpd"/>
                             <constraint firstItem="8Ba-PB-Gfq" firstAttribute="width" secondItem="Dhd-wF-lyB" secondAttribute="width" id="yd3-wc-8be"/>
                         </constraints>
                     </view>
@@ -117,12 +142,14 @@
                     <connections>
                         <outlet property="firstView" destination="8Ba-PB-Gfq" id="U1k-4m-BFa"/>
                         <outlet property="gradientView" destination="Z6e-ZH-7au" id="i5R-DW-MoI"/>
+                        <outlet property="imageView" destination="Qfb-Vm-RXs" id="dY3-he-gcx"/>
                         <outlet property="loginButton" destination="tDe-iz-MBb" id="aoF-O2-Fd0"/>
                         <outlet property="loginCenterConstraint" destination="24D-hd-9N4" id="Nuc-UR-oOa"/>
                         <outlet property="loginField" destination="JC3-Hl-h7q" id="xrT-M3-XQs"/>
                         <outlet property="passwordCenterConstraint" destination="ZlW-Ei-cVJ" id="niU-jp-frE"/>
                         <outlet property="passwordField" destination="Iph-Lr-hjQ" id="uvX-1Z-Vpg"/>
                         <outlet property="secondView" destination="Dhd-wF-lyB" id="oCW-gb-zqM"/>
+                        <outlet property="springView" destination="BYZ-8d-dmz" id="qSX-g8-L6N"/>
                         <outlet property="view1LeftSpace" destination="7LU-hY-uRX" id="IHv-7d-ed8"/>
                         <outlet property="view2LeftSpace" destination="lrA-gr-DTb" id="U1G-bQ-vzm"/>
                     </connections>
