@@ -8,7 +8,8 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *loginField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -20,6 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view1LeftSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view2LeftSpace;
+@property (weak, nonatomic) IBOutlet UIView *gradientView;
 
 
 @end
@@ -30,6 +32,30 @@
     [super viewDidLoad];
     [self setupFields];
     self.loginButton.alpha = 0;
+    [self createGradient];
+}
+
+- (void)createGradient {
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.frame = self.gradientView.bounds;
+    
+    UIColor *color1 = [UIColor orangeColor];
+    UIColor *color2 = [UIColor purpleColor];
+    UIColor *color3 = [UIColor yellowColor];
+    
+    //опорные точки на линии
+    layer.locations = @[
+                         @0.2,
+                         @0.6,
+                         @0.9
+                       ];
+    
+    layer.colors = @[(id) color1.CGColor,(id)color2.CGColor,(id)color3.CGColor];
+    
+    layer.startPoint = CGPointMake(0, 0);
+    layer.endPoint   = CGPointMake(1, 1);
+    
+    [self.gradientView.layer addSublayer:layer];
 }
 
 - (void)setupFields {
@@ -45,11 +71,20 @@
     field.layer.cornerRadius = CGRectGetHeight(field.frame) / 2;
     
     //Цвет окантовки
-    field.layer.borderColor = [[UIColor redColor] colorWithAlphaComponent:0.2].CGColor;
+    field.layer.borderColor = [[UIColor greenColor] colorWithAlphaComponent:0.2].CGColor;
     field.layer.borderWidth = 5;
     
     field.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
     
+    UIColor *textColor = [UIColor colorWithRed:127/255.0
+                                         green:255/255.0
+                                          blue:212/255.0
+                                         alpha:1];
+    field.textColor = textColor;
+    field.attributedPlaceholder = [[NSAttributedString alloc]initWithString:field.placeholder
+                                                                 attributes:@{NSForegroundColorAttributeName : [textColor colorWithAlphaComponent:0.6]}];
+    field.tintColor = textColor;
+    field.delegate  = self;
 }
 
 //Самое место для анимаций
@@ -62,7 +97,10 @@
 - (void)animateBackground {
     [UIView animateWithDuration:0.4
                      animations:^{
-                         self.view.backgroundColor = [UIColor blueColor];
+                         self.view.backgroundColor = [UIColor colorWithRed:127/255.0
+                                                                     green:255/255.0
+                                                                      blue:212/255.0
+                                                                     alpha:1];
                      }];
 }
 //Отображение полей
@@ -113,5 +151,38 @@
                      } completion:nil];
 }
 
+#pragma mark - UITextField Delegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *result = [textField.text stringByReplacingCharactersInRange:range
+                                                              withString:string];
+    NSString *loginFieldText;
+    NSString *passwordFieldText;
+    if (textField == self.loginField){
+        loginFieldText = result;
+        passwordFieldText = self.passwordField.text;
+    }
+    else {
+        loginFieldText = self.loginField.text;
+        passwordFieldText = result;
+    }
+    
+    [self updateButtonForLoginText:loginFieldText
+                          password:passwordFieldText];
+    
+    return YES;
+}
+
+- (void)updateButtonForLoginText:(NSString *)login password:(NSString *)password {
+    //если ввели логин и пароль длиннее 6 символов, покажем кнопку
+    BOOL show = login.length > 0 && password.length > 6;
+    
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         self.loginButton.alpha = show ? 1 : 0;
+                     } completion:nil];
+}
 
 @end
