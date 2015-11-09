@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3q0-49-FKb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -152,11 +152,45 @@
                         <outlet property="springView" destination="BYZ-8d-dmz" id="qSX-g8-L6N"/>
                         <outlet property="view1LeftSpace" destination="7LU-hY-uRX" id="IHv-7d-ed8"/>
                         <outlet property="view2LeftSpace" destination="lrA-gr-DTb" id="U1G-bQ-vzm"/>
+                        <segue destination="3q0-49-FKb" kind="show" identifier="Show me the magic" id="NAY-ou-hb3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="196" y="196"/>
+            <point key="canvasLocation" x="249" y="196"/>
+        </scene>
+        <!--Magic View Controller-->
+        <scene sceneID="nF9-kz-84Z">
+            <objects>
+                <viewController id="3q0-49-FKb" customClass="MagicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9BR-Gs-39J"/>
+                        <viewControllerLayoutGuide type="bottom" id="jtK-Dp-NWh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sPe-fs-JYR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Поздравляю, ты ввел-таки пароль!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbB-j6-heA">
+                                <rect key="frame" x="21" y="44" width="279" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mbB-j6-heA" firstAttribute="centerX" secondItem="sPe-fs-JYR" secondAttribute="centerX" id="SH6-l4-kFA"/>
+                            <constraint firstItem="mbB-j6-heA" firstAttribute="top" secondItem="9BR-Gs-39J" secondAttribute="bottom" constant="24" id="b79-C2-O7S"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XdV-Nm-D3t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="704" y="171"/>
         </scene>
     </scenes>
     <resources>

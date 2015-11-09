@@ -14,6 +14,7 @@
 		4F18D1B41BEDF8260079E26B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F18D1B31BEDF8260079E26B /* Assets.xcassets */; };
 		4F18D1B71BEDF8260079E26B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F18D1B51BEDF8260079E26B /* LaunchScreen.storyboard */; };
 		4F18D1C01BEDFA320079E26B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F18D1BF1BEDFA320079E26B /* LoginViewController.m */; };
+		4F2D5ED11BEE39D5007214A6 /* MagicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D5ED01BEE39D5007214A6 /* MagicViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		4F18D1B81BEDF8260079E26B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F18D1BE1BEDFA320079E26B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		4F18D1BF1BEDFA320079E26B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4F2D5ECF1BEE39D5007214A6 /* MagicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicViewController.h; sourceTree = "<group>"; };
+		4F2D5ED01BEE39D5007214A6 /* MagicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,8 @@
 		4F18D19B1BEDF8260079E26B = {
 			isa = PBXGroup;
 			children = (
+				4F2D5ECF1BEE39D5007214A6 /* MagicViewController.h */,
+				4F2D5ED01BEE39D5007214A6 /* MagicViewController.m */,
 				4F18D1A61BEDF8260079E26B /* AnimationDemoSeptOtk */,
 				4F18D1A51BEDF8260079E26B /* Products */,
 			);
@@ -157,6 +162,7 @@
 				4F18D1C01BEDFA320079E26B /* LoginViewController.m in Sources */,
 				4F18D1AF1BEDF8260079E26B /* ViewController.m in Sources */,
 				4F18D1AC1BEDF8260079E26B /* AppDelegate.m in Sources */,
+				4F2D5ED11BEE39D5007214A6 /* MagicViewController.m in Sources */,
 				4F18D1A91BEDF8260079E26B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

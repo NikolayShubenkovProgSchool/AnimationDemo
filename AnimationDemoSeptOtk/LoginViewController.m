@@ -172,6 +172,7 @@
 - (IBAction)loginPressed:(UIButton *)sender {
     if ([self.passwordField.text isEqualToString:@"123456"]){
         //покажем новый экран с супре анимацией
+        [self performSegueWithIdentifier:@"Show me the magic" sender:nil];
         return;
     }
     [self shakePasswordField];
@@ -256,7 +257,7 @@
 
 - (void)updateButtonForLoginText:(NSString *)login password:(NSString *)password {
     //если ввели логин и пароль длиннее 6 символов, покажем кнопку
-    BOOL show = login.length > 0 && password.length > 6;
+    BOOL show = login.length > 0 && password.length >= 6;
     
     [UIView animateWithDuration:0.5
                           delay:0
